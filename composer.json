@@ -1,0 +1,30 @@
+{
+    "name": "clumsy/form-builder",
+    "description": "Form Generator and Manager",
+    "keywords": ["laravel", "cms", "form"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Filipe Santos",
+            "email": "flipjms@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Clumsy\\FormBuilder": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
