@@ -1,0 +1,14 @@
+{
+  "name": "ClumsyFormBuilder",
+  "description": "Form Generator and Manager",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*"
+  }
+}
