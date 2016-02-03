@@ -13,7 +13,7 @@ class CreateFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clumsy_form', function (Blueprint $table) {
+        Schema::create('clumsy_forms', function (Blueprint $table) {
             $table->increments('id');
             $table->text('form');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateFormsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('clumsy_form');
+        Schema::drop('clumsy_forms');
     }
 }

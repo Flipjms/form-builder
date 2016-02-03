@@ -1,0 +1,2 @@
+Vue.config.debug = true;
+

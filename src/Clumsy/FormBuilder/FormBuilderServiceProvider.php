@@ -22,7 +22,7 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app['formbuilder'] = new MediaManager;
+        $this->app['form-builder'] = new FormBuilder;
     }
 
     /**
@@ -34,14 +34,13 @@ class FormBuilderServiceProvider extends ServiceProvider
     {
         $path = __DIR__.'/../..';
 
-        $this->package('clumsy/form-builder');
+        $this->package('clumsy/form-builder', 'clumsy/form-builder', $path);
+
 
         $assets = include($this->guessPackagePath() . '/assets/assets.php');
         Asset::batchRegister($assets);
 
-        // require $path.'/helpers.php';
-        // require $path.'/macros/form.php';
-        // require $path.'/macros/html.php';
+        require $path.'/macros/form.php';
     }
 
     /**

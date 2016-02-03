@@ -5,7 +5,8 @@ module.exports = function(grunt) {
         jshint: {
             files: [
                 'Gruntfile.js',
-                'src/assets/js/src/form-builder.js'
+                'src/assets/js/src/form-builder.js',
+                'src/assets/js/src/form-builder-frontend.js'
             ],
             options: {
                 loopfunc: true,
@@ -28,6 +29,12 @@ module.exports = function(grunt) {
                         'src/assets/js/src/form-builder.js'
                     ],
                     dest: 'src/assets/js/form-builder.js'
+                },
+                {
+                    src: [
+                        'src/assets/js/src/form-builder-frontend.js'
+                    ],
+                    dest: 'src/assets/js/form-builder-frontend.js'
                 }
                 ]
             }
@@ -52,7 +59,7 @@ module.exports = function(grunt) {
             }
         },
         clean : {
-            src : "src/assets/js/form-builder.js",
+            src : ["src/assets/js/form-builder.js", "src/assets/js/form-builder-frontend.js"]
         },
         less: {
             options: {
@@ -85,9 +92,9 @@ module.exports = function(grunt) {
                     'jshint',
                     'concat:build',
                     'uglify',
-                    'clean'
+                    'clean',
                 ],
-            }
+            },
         }
     });
 

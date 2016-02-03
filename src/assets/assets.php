@@ -27,4 +27,14 @@ return array(
             'jquery',
         ),
     ),
+
+    'form-builder-frontend.js' => array(
+        'set'   => 'footer',
+        'path'  => 'packages/clumsy/form-builder/js/form-builder-frontend.min.js',
+        'v'     => '0.0.1',
+        'req'   => array(
+            'vue',
+            'jquery',
+        ),
+    ),
 );
