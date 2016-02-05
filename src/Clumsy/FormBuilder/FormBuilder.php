@@ -4,6 +4,7 @@ namespace Clumsy\FormBuilder;
 
 use Clumsy\Assets\Facade as Asset;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\View;
 
 class FormBuilder
 {
@@ -13,11 +14,9 @@ class FormBuilder
 
         Asset::enqueue('form-builder-frontend.js', 30);
         Asset::json('clumsyForms', array(
-                array(
-                    $form->id => $formData,
-                )
+                $form->id => $formData,
             ));
 
-        return '<div class="clumsy-form-placeholder" data-id="'.$form->id.'"></div>';
+        return View::make('clumsy/form-builder::form-builder-frontend', compact('form'));
     }
 }

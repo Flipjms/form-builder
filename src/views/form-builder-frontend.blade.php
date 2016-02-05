@@ -1,4 +1,4 @@
-<div id="clumsy-form">
+<div class="clumsy-form-placeholder" data-id="{{ $form->id }}">
     <component
         v-for="element in elements"
         :is="element.template"
@@ -8,11 +8,4 @@
     </component>
 </div>
 
-<template id="select-item">
-    <label>@{{ data.title.text }}</label>
-    <select>
-        <option v-for="option in data.options" :option.once="option" value="@{{ option.value }}">
-            @{{ option.key  }}
-        </option>
-    </select>
-</template>
+@include('clumsy/form-builder::form-builder-frontend-templates')
