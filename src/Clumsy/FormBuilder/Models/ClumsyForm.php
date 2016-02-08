@@ -1,14 +1,13 @@
-<?php namespace Clumsy\FormBuilder\Models;
+<?php
 
-class ClumsyForm extends \Eloquent
+namespace Clumsy\FormBuilder\Models;
+
+abstract class ClumsyForm extends \Clumsy\CMS\Models\BaseModel
 {
+    protected $table = 'clumsy_forms';
 
-    protected $table = 'clumsy_form';
-
-    protected $guarded = array('id');
-
-    public function __toString()
+    public function setFormAttribute($value)
     {
-        return $this->url();
+        $this->attributes['form'] = json_encode(json_decode($value));
     }
 }

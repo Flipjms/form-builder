@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormsTable extends Migration
+class CreateFormResponseTable extends Migration
 {
 
     /**
@@ -13,9 +13,9 @@ class CreateFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clumsy_forms', function (Blueprint $table) {
+        Schema::create('clumsy_form_responses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('section');
+            $table->integer('form_id')->unsigned();
             $table->text('form');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateFormsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('clumsy_forms');
+        Schema::drop('clumsy_form_responses');
     }
 }

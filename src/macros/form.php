@@ -9,7 +9,7 @@
 
 use Clumsy\Assets\Facade as Asset;
 
-Form::macro('builder', function () {
+Form::macro('builder', function ($section, $id = null) {
 
     Asset::enqueue('form-builder.css', 30);
     Asset::enqueue('form-builder.js', 30);

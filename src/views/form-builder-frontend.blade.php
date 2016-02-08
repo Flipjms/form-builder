@@ -6,6 +6,7 @@
         :data.once="element"
     >
     </component>
+    <button type="button" @click="submit">Carrega aqui para ver o que acontece</button>
 </div>
 
 @include('clumsy/form-builder::form-builder-frontend-templates')

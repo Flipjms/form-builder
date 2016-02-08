@@ -17,6 +17,8 @@ class FormBuilder
                 $form->id => $formData,
             ));
 
+        Asset::json('clumsyFormUrl', route('form-builder.submit',''));
+
         return View::make('clumsy/form-builder::form-builder-frontend', compact('form'));
     }
 }

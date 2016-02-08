@@ -9,7 +9,8 @@ var formPrototypes = {
             editing: true,
             text: '',
         },
-        options: []
+        options: [],
+        selectedOption: null,
     },
 
     hint: {}

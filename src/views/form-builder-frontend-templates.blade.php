@@ -1,6 +1,6 @@
 <template id="select-box">
     <label>@{{ data.title.text }}</label>
-    <select v-model="selected">
+    <select v-model="data.selectedOption">
         <option></option>
         <option v-for="option in data.options" :option.once="option" value="@{{ option.value }}">
             @{{ option.label  }}
@@ -8,7 +8,7 @@
     </select>
     <div v-for="option in data.options"
         class="children-box"
-        v-if="option.value == selected"
+        v-if="option.value == data.selectedOption"
     >
 
         <component v-for="child in option.children"

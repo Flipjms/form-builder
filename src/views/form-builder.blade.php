@@ -59,6 +59,7 @@
 
 <template id="select-option">
     <div class="select-option-wrapper clearfix">
+        <i class="glyphicon glyphicon-trash"></i>
         <div class="inputs-wrapper">
             <input type="text" placeholder="text" v-model="option.label">
             <input type="text" placeholder="value" v-model="option.value">

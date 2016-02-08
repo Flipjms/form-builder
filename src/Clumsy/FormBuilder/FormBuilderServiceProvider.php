@@ -40,6 +40,7 @@ class FormBuilderServiceProvider extends ServiceProvider
         $assets = include($this->guessPackagePath() . '/assets/assets.php');
         Asset::batchRegister($assets);
 
+        require $path.'/routes.php';
         require $path.'/macros/form.php';
     }
 
