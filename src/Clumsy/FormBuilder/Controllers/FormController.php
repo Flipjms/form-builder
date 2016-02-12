@@ -2,7 +2,8 @@
 
 namespace Clumsy\FormBuilder\Controllers;
 
-use Clumsy\FormBuilder\Models\ClumsyFormResponse;
+use Clumsy\FormBuilder\Models\ClumsyFormStructure;
+use Clumsy\FormBuilder\Facade as FormBuilder;
 use Clumsy\CMS\Controllers\AdminController;
 use Clumsy\Assets\Facade as Asset;
 use Illuminate\Support\Facades\Input;
@@ -15,10 +16,35 @@ class FormController extends AdminController
     {
         $view = parent::index($data);
 
+        $data = $view->getData();
+        $data['sections'] = FormBuilder::getSectionsArray();
+
+        return View::make('clumsy/form-builder::index', $data);
+    }
+
+    public function create($data = array())
+    {
+        $view = parent::create($data);
+
         Asset::enqueue('form-builder.css', 30);
         Asset::enqueue('form-builder.js', 30);
 
-        return View::make('clumsy/form-builder::index', $view->getData());
+        $data = $view->getData();
+        $data['item']->section_slug = Input::get('section_slug');
+
+        return View::make('clumsy/form-builder::form-builder', $data);
+    }
+
+    public function edit($id, $data = array())
+    {
+        $view = parent::edit($id, $data);
+
+        Asset::enqueue('form-builder.css', 30);
+        Asset::enqueue('form-builder.js', 30);
+
+        $data = $view->getData();
+
+        return View::make('clumsy/form-builder::form-builder', $data);
     }
 
     public function submit($id)

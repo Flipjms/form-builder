@@ -2,8 +2,10 @@
 
 namespace Clumsy\FormBuilder;
 
-use Illuminate\Support\ServiceProvider;
 use Clumsy\Assets\Facade as Asset;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class FormBuilderServiceProvider extends ServiceProvider
 {
@@ -22,7 +24,6 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['form-builder'] = new FormBuilder;
     }
 
     /**
@@ -36,11 +37,12 @@ class FormBuilderServiceProvider extends ServiceProvider
 
         $this->package('clumsy/form-builder', 'clumsy/form-builder', $path);
 
+        $this->app['form-builder'] = new FormBuilder;
+        $this->registerRoutes();
 
         $assets = include($this->guessPackagePath() . '/assets/assets.php');
         Asset::batchRegister($assets);
 
-        require $path.'/routes.php';
         require $path.'/macros/form.php';
     }
 
@@ -52,5 +54,23 @@ class FormBuilderServiceProvider extends ServiceProvider
     public function provides()
     {
         return array();
+    }
+
+    public function registerRoutes()
+    {
+        Route::group(
+            array(
+                'prefix' => Config::get('clumsy/form-builder::input-prefix'),
+                'before' => array_merge(array('clumsy'), (array)Config::get('clumsy/form-builder::input-filters-before')),
+                'after'  => Config::get('clumsy/form-builder::input-filters-after'),
+            ),
+            function () {
+                $sections = app('form-builder')->getSections();
+
+                foreach ($sections->getAllItems() as $section) {
+                    Route::resource($section->getResource(), 'Clumsy\FormBuilder\Controllers\FormController');
+                }
+            }
+        );
     }
 }

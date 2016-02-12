@@ -16,6 +16,9 @@ class CreateFormsTable extends Migration
         Schema::create('clumsy_forms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('section');
+            $table->string('section_slug');
+            $table->string('name');
+            $table->string('slug');
             $table->text('form');
             $table->timestamps();
         });

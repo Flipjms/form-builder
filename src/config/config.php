@@ -9,6 +9,7 @@
  */
 
 return array(
+    'resource' => 'clumsy_form',
     /*
      |--------------------------------------------------------------------------
      | URL prefix
@@ -47,48 +48,75 @@ return array(
 
     /*
     |--------------------------------------------------------------------------
-    | Forms
+    | Sections
     |--------------------------------------------------------------------------
     |
-    | Create new entry per form
+    | Create new entry per section
     |
     */
-   'forms' => array(
-        /*
-        |--------------------------------------------------------------------------
-        | driver
-        |--------------------------------------------------------------------------
-        |
-        | database:
-        | allows to create forms dinamically. All of them will be processed
-        | by the package default behaviour
-        |
-        | model:
-        | only one form per entry, but allows override the default behaviour
-        |
-        */
-        'driver' => 'database',
+   'sections' => array(
+        array(
+            /*
+            |--------------------------------------------------------------------------
+            | driver
+            |--------------------------------------------------------------------------
+            |
+            | database:
+            | allows to create forms dinamically. All of them will be processed
+            | by the package default behaviour
+            |
+            | model:
+            | only one form per entry, but allows override the default behaviour
+            |
+            */
+            'driver' => 'database',
 
-        /*
-        |--------------------------------------------------------------------------
-        | Section
-        |--------------------------------------------------------------------------
-        |
-        | Form identifier
-        |
-        */
-        'section' => 'clumsy_form',
+            /*
+            |--------------------------------------------------------------------------
+            | Name
+            |--------------------------------------------------------------------------
+            |
+            | Section name
+            |
+            */
+            'name' => 'Database Driven',
 
-        /*
-        |--------------------------------------------------------------------------
-        | model
-        |--------------------------------------------------------------------------
-        |
-        | only available for model driver.
-        | Specifies which models will handle form proccessing
-        |
-        */
-        'model' => array(
+            /*
+            |--------------------------------------------------------------------------
+            | model
+            |--------------------------------------------------------------------------
+            |
+            | only available for model driver.
+            | Specifies which models will handle form proccessing
+            |
+            */
+            // 'model' => 'ModelPath'
+
+            /*
+            |--------------------------------------------------------------------------
+            | forms
+            |--------------------------------------------------------------------------
+            |
+            | only available for model driver.
+            | Creates forms for this section
+            |
+            */
+            // 'forms' => array(
+            // ),
+
         ),
+        array(
+            'driver' => 'model',
+            'name'   => 'Model Driven',
+            'model'  => 'CustomForm',
+            'forms' => array(
+                array(
+                    'title' => 'Paralelipipedos',
+                ),
+                array(
+                    'title' => 'Pneumoultramicroscopicossilicovulcanoconiotico'
+                ),
+            ),
+        )
     )
 );
