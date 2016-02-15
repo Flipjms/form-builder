@@ -33,8 +33,16 @@ class FormBuilder
         }
     }
 
-    public function load(Model $form)
+    public function build($slug, $section_slug = null)
     {
+        $query = ClumsyFormStructure::where('slug', $slug);
+
+        if ($section_slug) {
+            $query = $query->where('section_slug', $section_slug);
+        }
+
+        $form = $query->first();
+
         $formData = $form->form;
 
         Asset::enqueue('form-builder-frontend.js', 30);
@@ -42,7 +50,8 @@ class FormBuilder
                 $form->id => $formData,
             ));
 
-        Asset::json('clumsyFormUrl', route('form-builder.submit', ''));
+        Asset::json('clumsyFormUrl', route('clumsy-form.submit', ''));
+
 
         return View::make('clumsy/form-builder::form-builder-frontend', compact('form'));
     }

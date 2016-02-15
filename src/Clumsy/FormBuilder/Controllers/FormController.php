@@ -9,6 +9,7 @@ use Clumsy\Assets\Facade as Asset;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class FormController extends AdminController
 {
@@ -32,7 +33,20 @@ class FormController extends AdminController
         $data = $view->getData();
         $data['item']->section_slug = Input::get('section_slug');
 
+
         return View::make('clumsy/form-builder::form-builder', $data);
+    }
+
+    public function store()
+    {
+        $this->addSlugToInput();
+        return parent::store();
+    }
+
+    public function update($id)
+    {
+        $this->addSlugToInput();
+        return parent::update($id);
     }
 
     public function edit($id, $data = array())
@@ -55,5 +69,12 @@ class FormController extends AdminController
         ));
 
         return Response::json(null, 200);
+    }
+
+    protected function addSlugToInput()
+    {
+        $data = Input::all();
+        $data['slug'] = Str::slug(Input::get('name'));
+        Input::replace($data);
     }
 }

@@ -44,6 +44,7 @@ class FormBuilderServiceProvider extends ServiceProvider
         Asset::batchRegister($assets);
 
         require $path.'/macros/form.php';
+        require $path.'/routes.php';
     }
 
     /**
